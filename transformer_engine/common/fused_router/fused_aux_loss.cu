@@ -19,7 +19,7 @@ __global__ void fused_aux_loss_forward_kernel(const DataType* probs,
   int lane_id = threadIdx.x % kThreadsPerWarp;
   extern __shared__ float shmem_aux_loss[];
   DataType* aggregated_probs_per_expert = reinterpret_cast<DataType*>(shmem_aux_loss);
-  
+
   // Clear the shmem
   for (int i = threadIdx.x; i < num_experts; i += blockDim.x) {
     aggregated_probs_per_expert[i] = 0;
