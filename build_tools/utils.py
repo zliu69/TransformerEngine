@@ -272,7 +272,7 @@ def cuda_version() -> Tuple[int, ...]:
         return tuple(int(v) for v in version)
 
     try:
-        version_str = version("nvidia-cuda-runtime-cu12")
+        version_str = importlib.metadata.version("nvidia-cuda-runtime-cu12")
         version_tuple = tuple(int(part) for part in version_str.split(".") if part.isdigit())
         return version_tuple
     except importlib.metadata.PackageNotFoundError:
